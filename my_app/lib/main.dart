@@ -66,12 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<Null> refresh() async {
     final response = await http.get(
-        'https://api.thingspeak.com/channels/<channel>/feeds.json?api_key=<api_read_key>');
+        'https://api.thingspeak.com/channels/<channel>/feeds.json?api_key=<api_key_read>');
     setState(() {
       var resp = json.decode(response.body);
       var feeds = resp["feeds"];
-      latestGasLevel = feeds[0]["field1"];
-      var latestRecognition = feeds[0]["created_at"];
+      var indexLast = feeds.length - 1;
+      latestGasLevel = feeds[indexLast]["field1"];
+      var latestRecognition = feeds[indexLast]["created_at"];
       latestDate = latestRecognition.substring(0, 10);
       latestHour = latestRecognition.substring(11, 19);
     });

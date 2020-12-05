@@ -51,7 +51,7 @@ class _LoggerState extends State<Logger> {
 
   Future<Null> getData(String datePicked) async {
     final response = await http.get(
-        'https://api.thingspeak.com/channels/1245213/feeds.json?api_key=9WVZPJCIUQ41KRW8');
+        'https://api.thingspeak.com/channels/<channel>/feeds.json?api_key=<api_read_key>');
     setState(() {
       var resp = json.decode(response.body); //get a json object
       var feeds = resp["feeds"];

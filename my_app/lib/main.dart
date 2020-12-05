@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<Null> refresh() async {
     final response = await http.get(
-        'https://api.thingspeak.com/channels/1245213/feeds.json?api_key=9WVZPJCIUQ41KRW8');
+        'https://api.thingspeak.com/channels/<channel>/feeds.json?api_key=<api_read_key>');
     setState(() {
       var resp = json.decode(response.body);
       var feeds = resp["feeds"];
